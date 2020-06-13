@@ -35,6 +35,7 @@ var timer;
 // Starts the countdown timer once user clicks the 'start' button:
 function start() {
 
+// "getElementById" to return id in HTML file:
 // Used ".innerHTML" to dynamically change orignal HTML:
 timeLeft = 60;
 document.getElementById("timeLeft").innerHTML = timeLeft;
@@ -65,7 +66,7 @@ var quizContent = `
 <input type="text" id="name" placeholder="First name"> 
 <button onclick="setScore()">Set score!</button>`;
 
-document.getElementById("quizBody").innerHTML = quizContent;
+document.getElementById("mainQuiz").innerHTML = quizContent;
 }
 
 // Store the scores in local storage:
@@ -84,7 +85,7 @@ var quizContent = `
 <button onclick="clearScore()">Clear score!</button>
 <button onclick="resetGame()">Play Again!</button>`;
 
-document.getElementById("quizBody").innerHTML = quizContent;
+document.getElementById("mainQuiz").innerHTML = quizContent;
 }
 
 // Clears the score name and value in the local storage if the user selects 'clear score':
@@ -112,7 +113,7 @@ var quizContent = `
 <h3>Click to play!</h3>
 <button onclick="start()">Start!</button>`;
 
-document.getElementById("quizBody").innerHTML = quizContent;
+document.getElementById("mainQuiz").innerHTML = quizContent;
 }
 
 // Subtract 15 seconds from the timer if user chooses an incorrect answer:
@@ -127,7 +128,7 @@ score += 20;
 next();
 }
 
-// Loops through the questions:
+// Loops through each question:
 function next() {
 currentQuestion++;
 
@@ -149,6 +150,5 @@ for (var buttonLoop = 0; buttonLoop < questions[currentQuestion].choices.length;
     quizContent += buttonCode
 }
 
-
-document.getElementById("quizBody").innerHTML = quizContent;
+document.getElementById("mainQuiz").innerHTML = quizContent;
 }
