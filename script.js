@@ -59,14 +59,14 @@ function endGame() {
 clearInterval(timer);
 
 // Displays "game over" and score info:
-var quizContent = `
+var quizBody = `
 <h2>Game over!</h2>
 <h3>You got a ` + score +  ` /100!</h3>
 <h3>That means you got ` + score / 20 +  ` questions correct!</h3>
 <input type="text" id="name" placeholder="First name"> 
 <button onclick="setScore()">Set score!</button>`;
 
-document.getElementById("mainQuiz").innerHTML = quizContent;
+document.getElementById("mainQuiz").innerHTML = quizBody;
 }
 
 // Store the scores in local storage:
@@ -78,14 +78,14 @@ getScore();
 
 // Click to clear score and play again:
 function getScore() {
-var quizContent = `
+var quizBody = `
 <h2>` + localStorage.getItem("highscoreName") + `'s score is:</h2>
 <h1>` + localStorage.getItem("highscore") + `</h1><br> 
 
 <button onclick="clearScore()">Clear score!</button>
 <button onclick="resetGame()">Play Again!</button>`;
 
-document.getElementById("mainQuiz").innerHTML = quizContent;
+document.getElementById("mainQuiz").innerHTML = quizBody;
 }
 
 // Clears the score name and value in the local storage if the user selects 'clear score':
@@ -107,13 +107,13 @@ timer = null;
 document.getElementById("timeLeft").innerHTML = timeLeft;
 
 // To play again:
-var quizContent = `
+var quizBody = `
 <h1>Code Quiz!</h1>
 <h4>Try to answer the following questions within the 60 second time limit.<br>Incorrect answers will penalize your score/time by 15 seconds!</h4>
 <h3>Click to play!</h3>
 <button onclick="start()">Start!</button>`;
 
-document.getElementById("mainQuiz").innerHTML = quizContent;
+document.getElementById("mainQuiz").innerHTML = quizBody;
 }
 
 // Subtract 15 seconds from the timer if user chooses an incorrect answer:
@@ -133,11 +133,10 @@ function next() {
 currentQuestion++;
 
 if (currentQuestion > questions.length - 1) {
-    endGame();
-    return;
+    endGame();   
 }
 
-var quizContent = "<h2>" + questions[currentQuestion].title + "</h2>"
+var quizBody = "<h2>" + questions[currentQuestion].title + "</h2>"
 
 for (var buttonLoop = 0; buttonLoop < questions[currentQuestion].choices.length; buttonLoop++) {
     var buttonCode = "<button onclick=\"[ANS]\">[CHOICE]</button>"; 
@@ -147,8 +146,8 @@ for (var buttonLoop = 0; buttonLoop < questions[currentQuestion].choices.length;
     } else {
         buttonCode = buttonCode.replace("[ANS]", "incorrect()");
     }
-    quizContent += buttonCode
+    quizBody += buttonCode
 }
 
-document.getElementById("mainQuiz").innerHTML = quizContent;
+document.getElementById("mainQuiz").innerHTML = quizBody;
 }
